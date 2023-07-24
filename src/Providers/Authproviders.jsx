@@ -19,7 +19,7 @@ const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({ children }) => {
+const AuthProviders = ({ children }) => {
    const [user, setUser] = useState(null);
    const [loader, setLoader] = useState(true);
 
@@ -80,4 +80,4 @@ const AuthProvider = ({ children }) => {
    );
 };
 
-export default AuthProvider;
+export default AuthProviders;
