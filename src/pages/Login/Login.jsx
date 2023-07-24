@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { authContext } from "../../Providers/Authproviders";
 
 const Login = () => {
    const [email, setEmail] = useState("");
@@ -9,12 +10,22 @@ const Login = () => {
    const handleShowPassword = () => {
       setShowPassword((prevShowPassword) => !prevShowPassword);
    };
+   const { googleLogin, signIn } = useContext(authContext);
 
    const handleSubmit = (e) => {
       e.preventDefault();
 
       console.log("Email:", email);
       console.log("Password:", password);
+      signIn(email, password)
+         .then((result) => {
+            const user = result.user;
+            console.log(user);
+            alert("login successful");
+         })
+         .catch((err) => {
+            alert(`error: ${err.message}`);
+         });
    };
 
    return (
